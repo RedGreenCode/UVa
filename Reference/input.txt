@@ -1,0 +1,18 @@
+# Input file for Reference.java
+# Lines starting with # are comments and are ignored
+Start of input file
+# Split on space delimiter
+a b c d
+# Integers to add up
+1 2 3 4 5 6 7 8 9 10
+# Print every other character
+hxexdxgxexhxoxg
+# length, size
+Remember when to use length() and when to use size()
+# 2D grid
+the quick brown fox jumped over the lazy dog
+# uppercase/lowercase
+some people on the internet write like this
+SOME PEOPLE ON THE INTERNET WRITE LIKE THIS
+# square roots
+1 4 9 16 25 36 49 64 81 100
