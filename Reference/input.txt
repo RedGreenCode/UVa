@@ -4,7 +4,7 @@ Start of input file
 # Split on space delimiter
 a b c d
 # Integers to add up
-1 2 3 4 5 6 7 8 9 10
+1  2   3  4   5     6  7  8       9  10
 # Print every other character
 hxexdxgxexhxoxg
 # length, size
@@ -16,3 +16,15 @@ some people on the internet write like this
 SOME PEOPLE ON THE INTERNET WRITE LIKE THIS
 # square roots
 1 4 9 16 25 36 49 64 81 100
+# integers to sort
+60 0 38 46 6 87 37 59 82 73
+89 54 75 25 97 72 31 98 10 70
+# integers to find in a hash table
+60 0 38 46 6 87 37 59 82 73
+89 54 75 0 97 72 31 46 10 6
+# substring
+zzhedgehogzzz
+# format integers
+1 2 33 44 555
+# sum integers mixed with characters
+1 az 2 b   3 c@   4   dqq 5 6 7   e 8 9  f 10  g

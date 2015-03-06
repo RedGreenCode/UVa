@@ -60,7 +60,9 @@ public class Reference {
 		line = r.Next();
 		tokens = line.split(" ");
 		int sum = 0;
-		for (String s : tokens) sum += Integer.parseInt(s);
+		// !s.equals("") check is required to avoid errors when there are
+		// multiple spaces between tokens in the input
+		for (String s : tokens) if (!s.equals("")) sum += Integer.parseInt(s);
 		System.out.println(sum);
 
 
@@ -139,5 +141,74 @@ public class Reference {
 			int n = Integer.parseInt(s);
 			System.out.print((int)Math.sqrt(n) + " ");
 		}
+		System.out.println();
+
+		// --> Sort an array and a collection of integers
+		//
+		// Arrays.sort()
+		// Collections.sort()
+		line = r.Next();
+		tokens = line.split(" ");
+		int[] nums = new int[tokens.length];
+		int i = 0;
+		for (String str : tokens) nums[i++] = Integer.parseInt(str);
+		Arrays.sort(nums);
+		for (int j=0; j<nums.length; j++) System.out.print(nums[j] + " ");
+		System.out.println();
+
+		line = r.Next();
+		tokens = line.split(" ");
+		// Can't do this -- error: unexpected type (have to use Integer, not int) 
+		//List<int> numsList = new ArrayList<int>();
+		List<Integer> numsList = new ArrayList<Integer>();
+		for (String str : tokens) numsList.add(Integer.parseInt(str));
+		Collections.sort(numsList);
+		for (int n : numsList) System.out.print(n + " ");
+		System.out.println();
+
+		// --> Insert a list of integers into a hash table. Then for each
+		// integers in a second list, indicate whether it exists in the hash table
+		//
+		// HashMap
+		line = r.Next();
+		tokens = line.split(" ");
+		HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+		for (String str : tokens) hm.put(Integer.parseInt(str), 0);
+
+		line = r.Next();
+		tokens = line.split(" ");
+		for (String str : tokens) {
+			int n = Integer.parseInt(str);
+			System.out.print(hm.containsKey(n) ? "yes " : "no ");
+		}
+		System.out.println();
+
+		// --> Print the substring of a string from the 3rd to the 10th character
+		//
+		// String.substring(start inclusive, end exclusive)
+		line = r.Next();
+		System.out.println(line.substring(2, 10));
+
+		// --> Read integers and print them as 3 digits, padded with zeros if necessary
+		//
+		// String.format()
+		line = r.Next();
+		tokens = line.split(" ");
+		for (String s : tokens) System.out.print(String.format("%03d", Integer.parseInt(s)) + " ");
+		System.out.println();
+
+		// --> Sum space-delimited integers, ignoring characters mixed in
+		// NumberFormatException
+		line = r.Next();
+		tokens = line.split(" ");
+		sum = 0;
+		for (String s : tokens) {
+			if (!s.equals("")) {
+				try {
+					sum += Integer.parseInt(s);
+				} catch (NumberFormatException nfe) {}
+			}
+		}
+		System.out.println(sum);
 	}
 }
