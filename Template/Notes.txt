@@ -1,0 +1,81 @@
+####################################################################################################
+===========
+UVa 
+===========
+
+----------------------------------------------------------------------------------------------------
+**********
+Start date: 
+**********
+
+* Start a timer.
+* Select a problem.
+* Make a fresh copy of your template code.
+
+--------------------------------------------------
+Read through the problem statement, making notes about requirements and
+potential difficulties. Re-read the problem statement if necessary until you
+understand the requirements, or at least until you can make an assumption for
+each unclear requirement.
+-------------------------
+Problem notes:
+
+
+
+--------------------------------------------------
+Solve the problem on paper
+-------------------------
+High-level solution:
+
+
+
+--------------------------------------------------
+Expand the solution into pseudocode.
+-------------------------
+Pseudocode:
+
+
+
+--------------------------------------------------
+Translate the pseudocode into real code, making note of any parts that you
+find difficult to translate.
+-------------------------
+Compiler errors:
+
+
+
+Language features to add to Reference.java:
+
+
+
+--------------------------------------------------
+Test locally and debug if necessary until you're satisfied with your answer.
+-------------------------
+Notes on the local debugging process:
+
+
+
+--------------------------------------------------
+Check your answer by submitting your solution or, if you're using an offline source of problems,
+looking up the answer. Debug and recheck as necessary until you have a correct solution.
+-------------------------
+Notes on the online debugging process:
+
+
+
+--------------------------------------------------
+Stop the timer and record final elapsed time.
+-------------------------
+Overall thoughts on the problem:
+
+
+
+--------------------------------------------------
+Brainstorm process improvements
+-------------------------
+Process improvement ideas:
+
+
+
+----------------------------------------------------------------------------------------------------
+####################################################################################################

@@ -28,3 +28,29 @@ zzhedgehogzzz
 1 2 33 44 555
 # sum integers mixed with characters
 1 az 2 b   3 c@   4   dqq 5 6 7   e 8 9  f 10  g
+# ceiling and floor
+1 2.5 99.3 3.14
+# contains (String)
+banana nan
+contains tan
+format form
+# trim
+   hedgehog   
+# split (pipe)
+a|b|c|d
+# string to ASCII values
+hedgehog
+# ASCII values to string
+104 101 100 103 101 104 111 103
+# string to a=0, b=1,... encoding
+hedgehog
+# a=0, b=1,... encoding to string
+7 4 3 6 4 7 14 6
+# arrays
+	2      3      5      7     11     13     17     19     23	29	
+# contains (ArrayList)
+	2      3      5      7     11     13     17     19     23	29	
+# toArray
+	2      3      5      7     11     13     17     19     23	29	
+# DecimalFormat
+1 7
