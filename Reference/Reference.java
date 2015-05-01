@@ -1,6 +1,5 @@
-// Sample Java syntax for programming puzzles. I don't use Java
-// much in real life, so when I need to look something up, I add it to
-// this file as a reference.
+// Sample Java syntax for programming puzzles. When I need to look
+// up any Java syntax, I add it to this file as a reference.
 //
 // For more information, see http://www.redgreencode.com/about-project-462/
 
@@ -193,8 +192,16 @@ public class Reference {
 		//
 		// String.format()
 		line = r.Next();
-		tokens = line.split(" ");
+		tokens = line.split("\\s+");
 		for (String s : tokens) System.out.print(String.format("%03d", Integer.parseInt(s)) + " ");
+		System.out.println();
+
+		// --> Read integers and print them as 3 digits, padded with spaces if necessary
+		//
+		// String.format()
+		line = r.Next();
+		tokens = line.trim().split("\\s+");
+		for (String s : tokens) System.out.print(String.format("%3s", Integer.parseInt(s)) + " ");
 		System.out.println();
 
 		// --> Sum space-delimited integers, ignoring characters mixed in
@@ -326,6 +333,33 @@ public class Reference {
 		DecimalFormat df = new DecimalFormat("0.000");
 		System.out.println(df.format(n1/n2));
 
+		// --> Read space-delimited month, day, year, and an increment in days.
+		// Calculate the date produced by the input date plus the increment. Print the result in
+		// mm/dd/yyyy format, with each field padded with zeros to the indicated width.
+		//
+		// UVa 11947
+		//
+		// GregorianCalendar
+		line = r.Next();
+		tokens = line.trim().split("\\s+");
+		Calendar cal = GregorianCalendar.getInstance();
+		int month = Integer.parseInt(tokens[0]);
+		int day = Integer.parseInt(tokens[1]);
+		int year = Integer.parseInt(tokens[2]);
+		int days = Integer.parseInt(tokens[3]);
+		cal.set(year, (month-1), day, 0, 0, 0); // month is 0-based, unlike human date format
+		cal.add(Calendar.DATE, days);
+
+		int newm = cal.get(Calendar.MONTH);
+		int newd = cal.get(Calendar.DAY_OF_MONTH);
+		int newy = cal.get(Calendar.YEAR);
+
+		String sm = String.format("%02d", (newm+1)); // convert back to 1-based for humans
+		String sd = String.format("%02d", newd);
+		String sy = String.format("%04d", newy);
+
+		System.out.println(sm + "/" + sd + "/" + sy);
+		
 		// --> Next example goes above this line
 
 	}	// end of public static void main

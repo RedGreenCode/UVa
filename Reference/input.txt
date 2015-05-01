@@ -24,7 +24,9 @@ SOME PEOPLE ON THE INTERNET WRITE LIKE THIS
 89 54 75 0 97 72 31 46 10 6
 # substring
 zzhedgehogzzz
-# format integers
+# format integers (padded with zeros)
+1 2 33 44 555
+# format integers (padded with spaces)
 1 2 33 44 555
 # sum integers mixed with characters
 1 az 2 b   3 c@   4   dqq 5 6 7   e 8 9  f 10  g
@@ -54,3 +56,6 @@ hedgehog
 	2      3      5      7     11     13     17     19     23	29	
 # DecimalFormat
 1 7
+# GregorianCalendar
+# This date is chosen to ensure that the code is handling the 0-based month correctly.
+1 30 2015 1
