@@ -16,14 +16,16 @@ Start date:
 Read through the problem statement, making notes about requirements and
 potential difficulties. Re-read the problem statement if necessary until you
 understand the requirements, or at least until you can make an assumption for
-each unclear requirement.
+each unclear requirement. Determine the problem type to see if you can apply
+a standard algorithm.
 -------------------------
 Problem notes:
 
 
 
 --------------------------------------------------
-Solve the problem on paper
+Solve the problem on paper. Use algorithm analysis to verify that your
+solution will run within the judge’s time and space limits.
 -------------------------
 High-level solution:
 
