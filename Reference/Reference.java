@@ -38,6 +38,8 @@ public class Reference {
 	public static void main(String[] args) {
 		String line = "";
 		String[] tokens = null;
+		int i = 0;
+		int j = 0;
 		
 		Reference r = new Reference();
 		
@@ -68,7 +70,7 @@ public class Reference {
 		// --> Print every other character in the input, starting with the first character
 		// charAt
 		line = r.Next();
-		for (int i=0; i<line.length(); i+=2) {
+		for (i=0; i<line.length(); i+=2) {
 			System.out.print(line.charAt(i));
 		}
 		System.out.println();
@@ -85,7 +87,7 @@ public class Reference {
 		// List<char> doesn't work here since Java Generics can't use primitive types.
 		// http://stackoverflow.com/questions/19530816
 		List<Character> lettersList = new ArrayList<Character>();
-		for (int i=0; i<line.length(); i++) {
+		for (i=0; i<line.length(); i++) {
 			char c = line.charAt(i);
 			sb.append(c);	// append for StringBuilder
 			arrLetters[i] = c;
@@ -149,10 +151,10 @@ public class Reference {
 		line = r.Next();
 		tokens = line.split(" ");
 		int[] nums = new int[tokens.length];
-		int i = 0;
+		i = 0;
 		for (String str : tokens) nums[i++] = Integer.parseInt(str);
 		Arrays.sort(nums);
-		for (int j=0; j<nums.length; j++) System.out.print(nums[j] + " ");
+		for (j=0; j<nums.length; j++) System.out.print(nums[j] + " ");
 		System.out.println();
 
 		line = r.Next();
@@ -230,7 +232,7 @@ public class Reference {
 
 		// --> For the next three lines, print true if the first string contains the second string, false otherwise
 		// contains
-		for (int j=0; j<3; j++) {
+		for (j=0; j<3; j++) {
 			line = r.Next();
 			tokens = line.split(" ");
 			System.out.println(tokens[0].contains(tokens[1]));
@@ -250,7 +252,7 @@ public class Reference {
 
 		// --> Convert the input string to its ASCII values (space-delimited)
 		line = r.Next();
-		for (int j=0; j<line.length(); j++) System.out.print(((int)line.charAt(j)) + " ");
+		for (j=0; j<line.length(); j++) System.out.print(((int)line.charAt(j)) + " ");
 		System.out.println();
 
 		// --> Assuming the input values represent ASCII values, print the string they represent
@@ -265,7 +267,7 @@ public class Reference {
 		// --> Convert the input string to numerical values (space-delimited), where
 		// lowercase a = 0, b = 1, and so on
 		line = r.Next();
-		for (int j=0; j<line.length(); j++) System.out.print((line.charAt(j) - 'a') + " ");
+		for (j=0; j<line.length(); j++) System.out.print((line.charAt(j) - 'a') + " ");
 		System.out.println();
 
 		// --> Assuming the input values represent lowercase letters, where a=0, b=1, etc.,
@@ -359,7 +361,42 @@ public class Reference {
 		String sy = String.format("%04d", newy);
 
 		System.out.println(sm + "/" + sd + "/" + sy);
-		
+
+		// --> Print the first element of an integer array and a Boolean
+		// array, and print a Boolean variable.
+		//
+		// Boolean array
+		int[] a = new int[1];	// gets initialized to {0} automatically
+		Boolean[] b = new Boolean[1];	// this is {null}; no automatic initialization to false
+		Boolean c = true;	// have to initialize before printing; otherwise, error: variable c might not have been initialized
+		System.out.println(a[0]);	// 0
+		System.out.println(b[0]);	// null
+		System.out.println(c);		// true
+
+		// --> Read 5 rows and 5 columns into a 5x5 grid (2D integer array)
+		// Print the grid using a nested for loop, but break out of the
+		// inner loop whenever the current value is divisible by 6. This
+		// will result in printing only the bottom left section of the grid.
+		//
+		// UVa 10855
+		//
+		// nested loops for two-dimensional arrays
+		int[][] sq = new int[5][5];
+		for (i=0; i<5; i++) {
+			line = r.Next();
+			tokens = line.trim().split("\\s+");
+			for (j=0; j<tokens.length; j++) {
+				sq[i][j] = Integer.parseInt(tokens[j]);
+			}
+		}
+		for (i=0; i<5; i++) {
+			for (j=0; j<5; j++) {
+				if (sq[i][j] % 6 == 0) break;
+				System.out.print(String.format("%2d ", sq[i][j]));
+			}
+			System.out.println();
+		}
+
 		// --> Next example goes above this line
 
 	}	// end of public static void main
