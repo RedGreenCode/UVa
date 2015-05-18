@@ -6,46 +6,74 @@
 // For more information, see http://www.redgreencode.com/about-project-462/
 
 import java.util.*;
+import java.io.*;
 
 public class Main
 {
 	public static void main(String args[]) {
 			Main m = new Main();
-			m.ReadInput();
+			m.stdin = new BufferedReader(new InputStreamReader(System.in));
+			m.stdout = new BufferedWriter(new OutputStreamWriter(System.out));
+			m.sb = new StringBuilder(25000);
 
 			// Uncomment if first input line is number of test cases
 			//String sNumCases = m.GetNextInputLine();
 			//m.numCases = Integer.parseInt(sNumCases);
 
 			while (m.ParseNextTestCase()) ;
+			try {
+				m.stdout.write(m.sb.toString());
+				m.stdout.flush();
+				m.stdout.close();
+			} catch (IOException ioe) {}
 	}
 
-	List<String> inputList = new ArrayList<String>();
-	int inputPos = 0;
 	int numCases = 0;
 	int caseNum = 0;
 	Boolean debug = false;
 
+	BufferedReader stdin;
+	BufferedWriter stdout;
+	StringBuilder sb;
+
 	private Boolean ParseNextTestCase() {
-		if (inputPos >= inputList.size()) return false;
+		if (!Ready()) return false;
 		//if (caseNum >= numCases) return false;
 		String line = GetNextInputLine();
-		// parse input line
-		
-		// Process input line
-		System.out.println(line);
+		String[] tokens = line.split("\\s+");
+
+		Write(tokens[0]);
+		Write("|");
+		Write(tokens[1]);
+		Write("\n");
 
 		caseNum++;
 		return true;
 	}
 
-	private String GetNextInputLine() {
-		return inputList.get(inputPos++);
+	private Boolean Ready() {
+		try {
+			return (stdin.ready());
+		} catch (IOException ioe) { System.out.println("I/O exception"); }
+
+		return false;
 	}
 
-	private void ReadInput() {
-		Scanner stdin = new Scanner(System.in);
-		while (stdin.hasNextLine())
-			inputList.add(stdin.nextLine());
+	private String GetNextInputLine() {
+		try {
+			return stdin.readLine();
+		} catch (IOException ioe) { System.out.println("I/O exception"); }
+
+		return "";
+	}
+
+	private void Write(String s) {
+		try {
+			sb.append(s);
+			if (sb.length() >= 20000) {
+				stdout.write(sb.toString());
+				sb = new StringBuilder(25000);
+			}
+		} catch (IOException ioe) { System.out.println("I/O exception"); }
 	}
 }
