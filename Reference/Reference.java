@@ -34,6 +34,24 @@ public class Reference {
 		return line;
 	}
 
+	private static class SortDescending implements Comparator<Integer> {
+		public int compare(Integer i1, Integer i2) {
+			return i2-i1;
+		}
+	}
+
+	private static class Planet implements Comparable<Planet> {
+		public String Name;
+		public double Density;
+
+		public int compareTo(Planet p) {
+			double d = Density - p.Density;
+			if (d < 0) return -1;
+			else if (d > 0.001) return 1;
+			else return 0;
+		}
+	}
+
 	// main method must match this signature exactly
 	public static void main(String[] args) {
 		String line = "";
@@ -397,7 +415,169 @@ public class Reference {
 			System.out.println();
 		}
 
-		// --> Next example goes above this line
+		// --> Sort the input list of integers in ascending and descending
+		// order using two PriorityQueues
+		//
+		// UVa 10107
+		// PriorityQueue
+		SortDescending sortd = new SortDescending();
+		PriorityQueue<Integer> pq1 = new PriorityQueue<Integer>(100);
+		PriorityQueue<Integer> pq2 = new PriorityQueue<Integer>(100, sortd);
+		line = r.Next();
+		tokens = line.trim().split("\\s+");
+		for (j=0; j<tokens.length; j++) {
+			i = Integer.parseInt(tokens[j]);
+			pq1.add(i);
+			pq2.add(i);
+		}
+		for (j=0; j<tokens.length; j++) {
+			System.out.print(pq1.poll() + " ");
+		}
+		System.out.println();
+		for (j=0; j<tokens.length; j++) {
+			System.out.print(pq2.poll() + " ");
+		}
+		System.out.println();
+
+		// --> Read a list of planet names and density values. Then print them in
+		// descending order of density.
+		//
+		// UVa 10258
+		// Collections.sort
+		line = r.Next();
+		tokens = line.split(" ");
+		List<Planet> planets = new ArrayList<Planet>();
+		for (i=0; i<tokens.length; i+=2) {
+			Planet p = new Planet();
+			p.Name = tokens[i];
+			p.Density = Double.parseDouble(tokens[i+1]);
+			planets.add(p);
+		}
+		Collections.sort(planets);
+		for (i=0; i<planets.size(); i++) {
+			Planet p = planets.get(i);
+			System.out.println(p.Name + " has an average density of " + p.Density + " g/cm^3");
+		}
+
+		// --> Starting with 00000000, set each bit from right to left,
+		// and print the results as integers. Then unset each bit from
+		// left to right, and print the results again. Then toggle each
+		// bit from right to left and print the results.
+		//
+		// UVa 10264
+		// bitwise operations
+		int num = 0;
+		for (i=0; i<8; i++) {
+			int bits = 1 << i;
+			num |= bits;	// set
+			System.out.print(num + " ");
+		}
+		System.out.println();
+		for (i=7; i>=0; i--) {
+			int bits = ~(1 << i);
+			num &= bits;	// unset
+			System.out.print(num + " ");
+		}
+		System.out.println();
+		for (i=0; i<8; i++) {
+			int bits = 1 << i;
+			num ^= bits;	// toggle
+			System.out.print(num + " ");
+		}
+		System.out.println();
+
+		// --> Read pairs of integers, use the first number in each pair
+		// as a base and the second as an exponent, and print space-delimited
+		// results as integers.
+		//
+		// UVa 10264
+		// Math.pow
+		line = r.Next();
+		tokens = line.trim().split("\\s+");
+		for (i=0; i<tokens.length; i+=2) {
+			int base = Integer.parseInt(tokens[i]);
+			int exp = Integer.parseInt(tokens[i+1]);
+			System.out.print((int)Math.pow(base, exp) + " ");
+		}
+		System.out.println();
+
+		// --> Read two intervals (n1,n2) and (n3,n4). Print true
+		// if they overlap and false if they don't. There are four
+		// input lines for this test.
+		//
+		// UVa 11926
+		// BitSet
+		for (i=0; i<4; i++) {
+			line = r.Next();
+			tokens = line.trim().split("\\s+");
+			BitSet b1 = new BitSet();
+			b1.set(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]));
+			BitSet b2 = new BitSet();
+			b2.set(Integer.parseInt(tokens[2]), Integer.parseInt(tokens[3]));
+			System.out.println(b1.intersects(b2));
+		}
+
+		// --> Read the base-10 integer from the first line and print its 8-bit binary
+		// representation. Read the 8-bit binary representation from the second
+		// line, and print its base-10 integer value. Use little endian
+		// ordering (LSB on the right, as normally written for humans) in
+		// both cases.
+		//
+		// UVa 11933
+		// BitSet
+		line = r.Next();
+		int n = Integer.parseInt(line);
+		BitSet bs = BitSet.valueOf(new long[] {n});
+		for (i=7; i>=0; i--)
+			if (bs.get(i)) System.out.print("1"); else System.out.print("0");
+		System.out.println();
+		line = r.Next();
+		bs = new BitSet();
+		for (i=0; i<line.length(); i++)
+			if (line.charAt(i) == '1') bs.set(7-i); else bs.clear(7-i);
+		System.out.println(bs.toLongArray()[0]);
+
+		// --> Read the list of space-delimited integers from the input into two linked lists.
+		// For the first list, add each value to the head. For the second list, add each value
+		// to the tail. Iterate through each list, printing only the even values.
+		//
+		// UVa 11988
+		// LinkedList
+		line = r.Next();
+		tokens = line.trim().split("\\s+");
+		LinkedList<Integer> lst = new LinkedList<Integer>();
+		LinkedList<Integer> lst2 = new LinkedList<Integer>();
+		for (i=0; i<tokens.length; i++) {
+			lst.addFirst(Integer.parseInt(tokens[i]));
+			lst2.add(Integer.parseInt(tokens[i]));
+		}
+		ListIterator<Integer> listIterator = lst.listIterator();
+		ListIterator<Integer> listIterator2 = lst2.listIterator();
+		while (listIterator.hasNext()) {
+		    j = listIterator.next();
+		    if (j % 2 == 0) System.out.print(j + " ");
+		}
+		System.out.println();
+		while (listIterator2.hasNext()) {
+		    j = listIterator2.next();
+		    if (j % 2 == 0) System.out.print(j + " ");
+		}
+		System.out.println();
+
+		/*
+		// --> Describe this section
+		//
+		// UVa #####
+		// Language feature
+		line = r.Next();
+		tokens = line.trim().split("\\s+");
+		for (i=0; i<tokens.length; i++) {
+			System.out.print(tokens[i] + " ");
+		}
+		System.out.println();
+		*/
+		
+		// --> Use block above as a template
 
 	}	// end of public static void main
 }	// end of public class Reference
