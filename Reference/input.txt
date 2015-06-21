@@ -1,83 +1,164 @@
 # Input file for Reference.java
-# Lines starting with # are comments and are ignored
+# Lines starting with # are comments and are ignored, as are zero-length lines
+# Lines starting with $ are test case names, which are used
+# by unit tests to retrieve their input
+
+$ printInputLines
+# print this line with no changes
 Start of input file
-# Split on space delimiter
+
+$ splitString
+# split on space delimiter
 a b c d
-# Integers to add up
+
+$ parseIntegers
+# integers to sum, with extra whitespace to test robustness
 1  2   3  4   5     6  7  8       9  10
-# Print every other character
+
+$ printAlternateChars
+# print every other character
 hxexdxgxexhxoxg
-# length, size
+
+$ printLengthAndSize
+# string to use when finding length or size (depending on the container type)
 Remember when to use length() and when to use size()
-# 2D grid
+
+$ printGrid
+# string to convert into a 2D grid of characters
 the quick brown fox jumped over the lazy dog
-# uppercase/lowercase
+
+$ changeCharacterCase
+# strings to switch between uppercase and lowercase
 some people on the internet write like this
 SOME PEOPLE ON THE INTERNET WRITE LIKE THIS
-# square roots
+
+$ integerSquareRoot
+# integers to use for calculating square roots
 1 4 9 16 25 36 49 64 81 100
+
+$ sortIntegers
 # integers to sort
 60 0 38 46 6 87 37 59 82 73
 89 54 75 25 97 72 31 98 10 70
+
+$ hashLookup
 # integers to find in a hash table
 60 0 38 46 6 87 37 59 82 73
 89 54 75 0 97 72 31 46 10 6
-# substring
+
+$ printSubstring
+# string with a substring to print
 zzhedgehogzzz
-# format integers (padded with zeros)
+
+$ formatIntegersZeros
+# integers to format (padded with zeros)
 1 2 33 44 555
-# format integers (padded with spaces)
+
+$ formatIntegersSpaces
+# integers to format (padded with spaces)
 1 2 33 44 555
+
+$ sumIntegers
 # sum integers mixed with characters
 1 az 2 b   3 c@   4   dqq 5 6 7   e 8 9  f 10  g
-# ceiling and floor
+
+$ ceilingFloor
+# doubles for ceiling and floor calculations
 1 2.5 99.3 3.14
-# contains (String)
+
+$ stringContains
+# strings with substrings
 banana nan
 contains tan
 format form
+
+$ stringTrim
 # trim
    hedgehog   
+
+$ splitStringPipe
 # split (pipe)
 a|b|c|d
-# string to ASCII values
+
+$ getASCII
+# string to convert to ASCII values
 hedgehog
-# ASCII values to string
+
+$ ASCIItoChar
+# ASCII values to convert to chars
 104 101 100 103 101 104 111 103
+
+$ charToOrdinal
 # string to a=0, b=1,... encoding
 hedgehog
-# a=0, b=1,... encoding to string
+
+$ ordinalToChar
+# a=0, b=1,... encoding to convert to a string
 7 4 3 6 4 7 14 6
-# arrays
+
+$ cloneArray
+# numbers for an array
 	2      3      5      7     11     13     17     19     23	29	
-# contains (ArrayList)
+
+$ initIntArray
+# no input
+
+$ lookupElement
+# list to look something up in
 	2      3      5      7     11     13     17     19     23	29	
-# toArray
+
+$ listToArray
+# list to convert to an array
 	2      3      5      7     11     13     17     19     23	29	
-# DecimalFormat
+
+$ formatDecimal
+# numbers to divide
 1 7
-# GregorianCalendar
-# This date is chosen to ensure that the code is handling the 0-based month correctly.
+
+$ incrementDate
+# month, day, year, increment (days)
+# This date (January 30, 2015) is chosen to ensure that the code is handling the 0-based month correctly.
 1 30 2015 1
-# nested loops for two-dimensional arrays
+
+$ arrayInit
+# no input
+
+$ loopBreak
+# grid of integers to read into a 2D array
  0  1  2  3  4
  5  6  7  8  9
 10 11 12 13 14
 15 16 17 18 19
 20 21 22 23 24
+
+$ sortAscendingDescending
 # integers to sort
 3 1 4 1 5 9 2 6 5 3 5
+
+$ sortObjects
 # planets and mean density values in g/cm^3
 Mercury 5.43 Venus 5.24 Earth 5.515 Mars 3.940 Jupiter 1.33 Saturn 0.70 Uranus 1.30 Neptune 1.76
-# exponentiation
+
+$ flipBits
+# no input
+
+$ exponentiateIntegers
+# bases and powers
 0 1 1 0 2 8 10 2
-# BitSet
+
+$ checkIntervalOverlap
+# endpoints of integer intervals
 0 5 5 10
 0 5 4 10
 0 10 2 5
 2 5 0 10
-# binary <-> decimal
+
+$ convertNumberBase
+# decimal representation to convert to binary
 149
+# binary representation to convert to decimal
 10010101
-# LinkedList
+
+$ processLinkedLists
+# integers to populate linked lists
 3 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3 2 3
