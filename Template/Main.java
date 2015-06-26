@@ -17,16 +17,12 @@ public class Main
 			m.sb = new StringBuilder(25000);
 
 			// Uncomment if first input line is number of test cases
-			//String sNumCases = m.GetNextInputLine();
+			//String sNumCases = m.getNextInputLine();
 			//m.numCases = Integer.parseInt(sNumCases);
 
-			while (m.ParseNextTestCase()) ;
-			try {
-				m.stdout.write(m.sb.toString());
-				m.stdout.flush();
-				m.stdout.close();
-			} catch (IOException ioe) {}
-	}
+			while (m.parseNextTestCase()) ;
+			m.flushOutput();
+}
 
 	int numCases = 0;
 	int caseNum = 0;
@@ -36,22 +32,30 @@ public class Main
 	BufferedWriter stdout;
 	StringBuilder sb;
 
-	private Boolean ParseNextTestCase() {
-		if (!Ready()) return false;
+	private Boolean parseNextTestCase() {
+		if (!ready()) return false;
 		//if (caseNum >= numCases) return false;
-		String line = GetNextInputLine();
+		String line = getNextInputLine();
 		String[] tokens = line.split("\\s+");
 
-		Write(tokens[0]);
-		Write("|");
-		Write(tokens[1]);
-		Write("\n");
+		write(tokens[0]);
+		write("|");
+		write(tokens[1]);
+		writeln();
 
 		caseNum++;
 		return true;
 	}
 
-	private Boolean Ready() {
+	public void flushOutput() {
+		try {
+			stdout.write(sb.toString());
+			stdout.flush();
+			stdout.close();
+		} catch (IOException ioe) {}
+	}
+
+	private Boolean ready() {
 		try {
 			return (stdin.ready());
 		} catch (IOException ioe) { System.out.println("I/O exception"); }
@@ -59,7 +63,7 @@ public class Main
 		return false;
 	}
 
-	private String GetNextInputLine() {
+	private String getNextInputLine() {
 		try {
 			return stdin.readLine();
 		} catch (IOException ioe) { System.out.println("I/O exception"); }
@@ -67,13 +71,28 @@ public class Main
 		return "";
 	}
 
-	private void Write(String s) {
+	private void checkSb() {
 		try {
-			sb.append(s);
 			if (sb.length() >= 20000) {
 				stdout.write(sb.toString());
 				sb = new StringBuilder(25000);
 			}
 		} catch (IOException ioe) { System.out.println("I/O exception"); }
+	}
+
+	public void write(Object w) {
+		sb.append(w);
+		checkSb();
+	}
+
+	public void writeln() {
+		sb.append(System.getProperty("line.separator"));
+		checkSb();
+	}
+
+	public void writeln(Object w) {
+		sb.append(w);
+		sb.append(System.getProperty("line.separator"));
+		checkSb();
 	}
 }
