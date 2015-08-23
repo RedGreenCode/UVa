@@ -1,4 +1,4 @@
-// Template for UVa solutions
+// Template for UVa solutions -- not the JUnit version
 //
 // Part of Project 462, a trip through the 462 starred problems
 // at http://uhunt.felix-halim.net/
@@ -11,25 +11,19 @@ import java.io.*;
 public class Main
 {
 	public static void main(String args[]) {
-		Main m = new Main();
-		m.setupIO(new InputStreamReader(System.in), new OutputStreamWriter(System.out));
-		m.run();
-	}
+			Main m = new Main();
+			m.stdin = new BufferedReader(new InputStreamReader(System.in));
+			m.stdout = new BufferedWriter(new OutputStreamWriter(System.out));
+			m.sb = new StringBuilder(25000);
+			if (args.length > 0) m.debug = true;
 
-	public void setupIO(Reader reader, Writer writer) {
-		stdin = new BufferedReader(reader);
-		stdout = new BufferedWriter(writer);
-		sb = new StringBuilder(25000);
+			// Uncomment if first input line is number of test cases
+			//String sNumCases = m.getNextInputLine();
+			//m.numCases = Integer.parseInt(sNumCases);
 
-		// Uncomment if first input line is number of test cases
-		//String sNumCases = getNextInputLine();
-		//numCases = Integer.parseInt(sNumCases);
-	}
-
-	public void run() {
-		while (parseNextTestCase()) ;
-		flushOutput();
-	}
+			while (m.parseNextTestCase()) ;
+			m.flushOutput();
+}
 
 	int numCases = 0;
 	int caseNum = 0;
@@ -39,20 +33,11 @@ public class Main
 	BufferedWriter stdout;
 	StringBuilder sb;
 
-	public Integer[] getInts() {
-		String line = getNextInputLine();
-		String[] tokens = line.split("\\s+");
-		ArrayList<Integer> lst = new ArrayList<>();
-		for (String s : tokens) lst.add(Integer.parseInt(s));
-
-		return lst.toArray(new Integer[lst.size()]);
-	}
-
 	private Boolean parseNextTestCase() {
 		if (!ready()) return false;
 		//if (caseNum >= numCases) return false;
-
-		Integer[] tokens = getInts();
+		String line = getNextInputLine();
+		String[] tokens = line.split("\\s+");
 
 		write(tokens[0]);
 		write("|");
