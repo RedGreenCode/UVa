@@ -1,6 +1,6 @@
-// http://www.redgreencode.com
-//
 // Java solution to 11402 - Ahoy, Pirates!
+//
+// For more information, see http://www.redgreencode.com/solving-uva-11402-with-segment-trees/
 //
 // Some code and/or ideas come from:
 // 	* http://algs4.cs.princeton.edu/99misc/SegmentTree.java.html
