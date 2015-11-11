@@ -162,3 +162,19 @@ $ convertNumberBase
 $ processLinkedLists
 # integers to populate linked lists
 3 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3 2 3
+
+$ reverseString
+# string to reverse
+gohegdeh
+
+$ dontReverseString
+# string to not reverse
+hedgehog
+
+$ countIntegers
+# integers to count
+10 20 20 30 30 30
+
+$ countIntegers2
+# integers to count again
+10 20 20 30 30 30
