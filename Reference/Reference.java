@@ -15,7 +15,7 @@ public class Reference {
 	 * To debug just one test, call its test method from here.
 	 */
 	public void runOneTest() {
-		countIntegers2();
+		cloneStack();
 	}
 
 	/**
@@ -64,10 +64,18 @@ public class Reference {
 		processLinkedLists();
 		reverseString();
 		dontReverseString();
+		countIntegers();
+		countIntegers2();
+		cloneStack();
 		ru.writeln("--end--");
 	}
 
 	// Start of test section.
+
+	//
+	// For a discussion of the features demonstrated below, see
+	// http://www.redgreencode.com/java-lessons-from-uhunt-chapter-1/
+	//
 
 	/**
 	 * Print a string.<p>
@@ -140,7 +148,7 @@ public class Reference {
 			char[] arrLetters = new char[line.length()];
 			// List<char> doesn't work here since Java Generics can't use primitive types.
 			// http://stackoverflow.com/questions/19530816
-			List<Character> lettersList = new ArrayList<Character>();
+			List<Character> lettersList = new ArrayList<>();
 			for (int i=0; i<line.length(); i++) {
 				char c = line.charAt(i);
 				sb.append(c);	// append for StringBuilder
@@ -244,7 +252,7 @@ public class Reference {
 			tokens = lines.get(1).split("\\s+");
 			// Can't do this -- error: unexpected type (have to use Integer, not int) 
 			//List<int> numsList = new ArrayList<int>();
-			List<Integer> numsList = new ArrayList<Integer>();
+			List<Integer> numsList = new ArrayList<>();
 			for (String str : tokens) numsList.add(Integer.parseInt(str));
 			Collections.sort(numsList);
 			for (int n : numsList) ru.write(n + " ");
@@ -264,7 +272,7 @@ public class Reference {
 		for (int i=0; i<lines.size(); i+=2) {
 			// Insert into the table
 			String[] tokens = lines.get(0).split("\\s+");
-			HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+			HashMap<Integer, Integer> hm = new HashMap<>();
 			for (String str : tokens) hm.put(Integer.parseInt(str), 0);
 
 			// Lookup
@@ -517,7 +525,7 @@ public class Reference {
 	 */
 	public void lookupElement() {
 		for (String line : ru.getTestInput()) {
-			List<Integer> numsList = new ArrayList<Integer>();
+			List<Integer> numsList = new ArrayList<>();
 			String[] tokens = line.trim().split("\\s+");
 			for (String s : tokens) numsList.add(Integer.parseInt(s));
 			ru.writeln(numsList.contains(23));
@@ -533,7 +541,7 @@ public class Reference {
 	 */
 	public void listToArray() {
 		for (String line : ru.getTestInput()) {
-			List<Integer> numsList = new ArrayList<Integer>();
+			List<Integer> numsList = new ArrayList<>();
 			String[] tokens = line.trim().split("\\s+");
 			for (String s : tokens) numsList.add(Integer.parseInt(s));
 			Integer[] numsArr = numsList.toArray(new Integer[numsList.size()]);	// have to use Integer, not int
@@ -604,6 +612,11 @@ public class Reference {
 		ru.writeln(c);		// true
 	}
 
+	//
+	// For a discussion of the features demonstrated below, see
+	// http://www.redgreencode.com/java-lessons-from-uhunt-chapter-2/
+	//
+
 	/**
 	 * Use break to exit the inner loop in a set of two nested loops.<p>
 	 * Input: a 5x5 grid of integers<p>
@@ -633,20 +646,23 @@ public class Reference {
 	/**
 	 * Sort a list of integers in ascending and descending order.<p>
 	 * Input: a list of integers<p>
-	 * Output: the list in ascending order; the list in descending order<p>
+	 * Output: the list in ascending order; the list in descending order;
+	 * the list in descending order again<p>
 	 * Language features: PriorityQueue<p>
-	 * UVa problem: 10107
+	 * UVa problems: 10107, 11995
 	 */
 	public void sortAscendingDescending() {
 		for (String line : ru.getTestInput()) {
 			SortDescending sortd = new SortDescending();
-			PriorityQueue<Integer> pq1 = new PriorityQueue<Integer>(100);
-			PriorityQueue<Integer> pq2 = new PriorityQueue<Integer>(100, sortd);
+			PriorityQueue<Integer> pq1 = new PriorityQueue<>(100);
+			PriorityQueue<Integer> pq2 = new PriorityQueue<>(100, sortd);
+			PriorityQueue<Integer> pq3 = new PriorityQueue<>(100, Collections.reverseOrder());
 			String[] tokens = line.trim().split("\\s+");
 			for (int j=0; j<tokens.length; j++) {
 				int i = Integer.parseInt(tokens[j]);
 				pq1.add(i);
 				pq2.add(i);
+				pq3.add(i);
 			}
 			for (int j=0; j<tokens.length; j++) {
 				ru.write(pq1.poll() + " ");
@@ -656,10 +672,12 @@ public class Reference {
 				ru.write(pq2.poll() + " ");
 			}
 			ru.writeln();
+			for (int j=0; j<tokens.length; j++) {
+				ru.write(pq3.poll() + " ");
+			}
+			ru.writeln();
 		}
 	}
-
-	// TODO: reverse order priority queue (UVa 11995)
 
 	/**
 	 * Sort a collection of custom objects.<p>
@@ -671,7 +689,7 @@ public class Reference {
 	public void sortObjects() {
 		for (String line : ru.getTestInput()) {
 			String[] tokens = line.trim().split("\\s+");
-			List<Planet> planets = new ArrayList<Planet>();
+			List<Planet> planets = new ArrayList<>();
 			for (int i=0; i<tokens.length; i+=2) {
 				Planet p = new Planet();
 				p.Name = tokens[i];
@@ -799,8 +817,8 @@ public class Reference {
 	public void processLinkedLists() {
 		for (String line : ru.getTestInput()) {
 			String[] tokens = line.trim().split("\\s+");
-			LinkedList<Integer> lst = new LinkedList<Integer>();
-			LinkedList<Integer> lst2 = new LinkedList<Integer>();
+			LinkedList<Integer> lst = new LinkedList<>();
+			LinkedList<Integer> lst2 = new LinkedList<>();
 			for (int i=0; i<tokens.length; i++) {
 				lst.addFirst(Integer.parseInt(tokens[i]));
 				lst2.add(Integer.parseInt(tokens[i]));
@@ -828,7 +846,7 @@ public class Reference {
 	 * UVa problem: 514
 	 */
 	public void reverseString() {
-		Stack<Character> s = new Stack<Character>();
+		Stack<Character> s = new Stack<>();
 		for (String line : ru.getTestInput()) {
 			for (int i=0; i<line.length(); i++) {
 				s.push(line.charAt(i));
@@ -848,7 +866,7 @@ public class Reference {
 	 * UVa problem: 10172
 	 */
 	public void dontReverseString() {
-		Queue<Character> q = new LinkedList<Character>();
+		Queue<Character> q = new LinkedList<>();
 		for (String line : ru.getTestInput()) {
 			for (int i=0; i<line.length(); i++) {
 				q.add(line.charAt(i));
@@ -919,10 +937,29 @@ public class Reference {
 		}
 	}
 
-	// TODO:
-	// Copying collecdtions like stacks and queues, including @SuppressWarnings("unchecked")
-	// Using LinkedList as a queue implementation -- is there a reason to use Queue and not just use LinkedList?
-	// Converting long to int (and Long to Integer)
+	/**
+	 * Clone a stack.<p>
+	 * Input: a list of integers<p>
+	 * Output: two copies of the list in reverse order<p>
+	 * Language features: Stack<p>
+	 * UVa problem: UVa 732
+	 */
+	public void cloneStack() {
+		for (String line : ru.getTestInput()) {
+			String[] tokens = line.trim().split("\\s+");
+			Stack<Integer> s1 = new Stack<>();
+			for (String s : tokens) s1.push(Integer.parseInt(s));
+			// clone() returns Object, so the compiler can't verify that it is actually
+			// a Stack<Integer>. This directive suppresses the warning.
+			// http://stackoverflow.com/questions/7919836/how-do-i-copy-a-stack-in-java
+			@SuppressWarnings("unchecked")
+			Stack<Integer> s2 = (Stack<Integer>)s1.clone();
+			while (!s1.isEmpty()) ru.write(s1.pop() + " ");
+			ru.writeln();
+			while (!s2.isEmpty()) ru.write(s2.pop() + " ");
+			ru.writeln();
+		}
+	}
 
 	/**
 	 * Describe the purpose of this test.<p>

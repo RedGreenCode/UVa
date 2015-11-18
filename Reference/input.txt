@@ -178,3 +178,7 @@ $ countIntegers
 $ countIntegers2
 # integers to count again
 10 20 20 30 30 30
+
+$ cloneStack
+# list of integers to reverse
+3 5 6 2 9 5 1 4 1 3
