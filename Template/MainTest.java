@@ -13,9 +13,9 @@ public class MainTest {
 	}
 
 	@Test
-	public void getIntsTest() {
-		Integer[] n = m.getInts();
-		assertEquals(1, (int)n[0]);
-		assertEquals(2, (int)n[1]);
+	public void getLongsTest() {
+		Long[] n = m.getLongs();
+		assertEquals(1, (long)n[0]);
+		assertEquals(2, (long)n[1]);
 	}
 }
